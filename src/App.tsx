@@ -3,634 +3,451 @@ import React from "react";
 
 const LandingPage: React.FC = () => {
   return (
-    <div className="bg-white text-gray-900 min-h-screen flex flex-col">
-      {/* Header */}
-      <header className="fixed top-0 left-0 w-full z-30 bg-white/90 backdrop-blur border-b border-gray-200 shadow-sm">
-        <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
-          {/* Logo */}
-          <div className="flex items-center">
-            <span className="flex items-center text-2xl font-bold tracking-tight text-blue-600 select-none">
-              {/* Simple bird logo SVG */}
-              <svg
-                className="w-8 h-8 mr-2 text-blue-500"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth={2}
-                viewBox="0 0 32 32"
-                aria-hidden="true"
-              >
-                <path
-                  d="M6 19c4 1 8-2 10-6 5 5 10 2 10 2s-4 7-13 11c-2-1-7-4-7-8 0-2 2-2 2-2z"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <circle cx="11.5" cy="13.5" r="1" fill="currentColor" />
-              </svg>
-              UK Birds
-            </span>
-          </div>
-          {/* Desktop Nav */}
-          <ul className="hidden md:flex space-x-8 font-medium">
+    <div className="bg-white text-gray-900 font-sans min-h-screen flex flex-col">
+      {/* Animated Gradient Background Blur */}
+      <div className="fixed inset-0 -z-10 pointer-events-none">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 0.18, scale: 1 }}
+          transition={{ duration: 1.8, ease: [0.42, 0, 0.58, 1] }}
+          className="absolute top-[-20%] left-[-10%] w-[60vw] h-[60vw] rounded-full bg-gradient-to-tr from-blue-400 via-sky-200 to-fuchsia-200 blur-3xl"
+        />
+        <motion.div
+          initial={{ opacity: 0, scale: 1.2 }}
+          animate={{ opacity: 0.18, scale: 1 }}
+          transition={{ duration: 1.8, delay: 0.5, ease: [0.42, 0, 0.58, 1] }}
+          className="absolute bottom-[-25%] right-[-10%] w-[50vw] h-[50vw] rounded-full bg-gradient-to-br from-fuchsia-200 via-blue-200 to-blue-400 blur-2xl"
+        />
+      </div>
+
+      {/* Header/Navbar */}
+      <header className="sticky top-0 z-30 bg-white/80 backdrop-blur-lg border-b border-gray-100">
+        <nav className="max-w-7xl mx-auto px-4 sm:px-8 flex items-center justify-between h-16">
+          {/* Brand/Logo */}
+          <a href="#home" className="flex items-center gap-2">
+            <span className="sr-only">SocialAI Logo</span>
+            <svg width={32} height={32} viewBox="0 0 32 32" fill="none" aria-hidden="true">
+              <circle cx={16} cy={16} r={14} className="stroke-blue-400" strokeWidth={2} fill="url(#logoGrad)" />
+              <defs>
+                <radialGradient id="logoGrad" cx="50%" cy="50%" r="60%">
+                  <stop offset="0%" stopColor="#38bdf8" />
+                  <stop offset="100%" stopColor="#f0abfc" />
+                </radialGradient>
+              </defs>
+            </svg>
+            <span className="font-extrabold text-lg tracking-tight text-gray-900 select-none">SocialAI</span>
+          </a>
+          {/* Nav Links */}
+          <ul className="hidden md:flex items-center gap-8 text-base font-medium">
             <li>
-              <a href="#home" className="transition text-gray-700 hover:text-blue-600 focus:text-blue-600 focus:outline-none">
-                Home
-              </a>
+              <a href="#home" className="hover:text-blue-500 transition-colors duration-200 focus:outline-none focus:text-blue-600">Home</a>
             </li>
             <li>
-              <a href="#features" className="transition text-gray-700 hover:text-blue-600 focus:text-blue-600 focus:outline-none">
-                Features
-              </a>
+              <a href="#features" className="hover:text-blue-500 transition-colors duration-200 focus:outline-none focus:text-blue-600">Features</a>
             </li>
             <li>
-              <a href="#about" className="transition text-gray-700 hover:text-blue-600 focus:text-blue-600 focus:outline-none">
-                About
-              </a>
+              <a href="#about" className="hover:text-blue-500 transition-colors duration-200 focus:outline-none focus:text-blue-600">About</a>
             </li>
             <li>
-              <a href="#testimonials" className="transition text-gray-700 hover:text-blue-600 focus:text-blue-600 focus:outline-none">
-                Testimonials
-              </a>
+              <a href="#testimonials" className="hover:text-blue-500 transition-colors duration-200 focus:outline-none focus:text-blue-600">Testimonials</a>
             </li>
             <li>
-              <a href="#contact" className="transition text-gray-700 hover:text-blue-600 focus:text-blue-600 focus:outline-none">
-                Contact
-              </a>
+              <a href="#contact" className="hover:text-blue-500 transition-colors duration-200 focus:outline-none focus:text-blue-600">Contact</a>
             </li>
           </ul>
           {/* Mobile Hamburger */}
           <div className="md:hidden flex items-center">
             <button
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-blue-600 focus:outline-none"
-              tabIndex={-1}
-              aria-label="Open main menu"
-              type="button"
+              className="inline-flex items-center justify-center p-2 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-200"
+              aria-label="Open navigation menu"
+              tabIndex={0}
             >
-              {/* Hamburger icon (no toggle logic, just for style) */}
-              <svg className="block h-6 w-6" viewBox="0 0 24 24" stroke="currentColor" fill="none" strokeWidth={2}>
+              <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
               </svg>
             </button>
           </div>
         </nav>
-        {/* Mobile Nav (Always hidden, no toggle logic) */}
-        <div className="md:hidden hidden">
-          <ul className="px-4 pb-4 space-y-2">
+        {/* Mobile Menu (hidden by default, no JS logic) */}
+        <div className="md:hidden">
+          <ul className="hidden flex-col px-6 pb-4 gap-4 font-medium">
             <li>
-              <a href="#home" className="block py-2 text-gray-700 hover:text-blue-600 focus:text-blue-600">
-                Home
-              </a>
+              <a href="#home" className="block py-2 hover:text-blue-500 transition-colors">Home</a>
             </li>
             <li>
-              <a href="#features" className="block py-2 text-gray-700 hover:text-blue-600 focus:text-blue-600">
-                Features
-              </a>
+              <a href="#features" className="block py-2 hover:text-blue-500 transition-colors">Features</a>
             </li>
             <li>
-              <a href="#about" className="block py-2 text-gray-700 hover:text-blue-600 focus:text-blue-600">
-                About
-              </a>
+              <a href="#about" className="block py-2 hover:text-blue-500 transition-colors">About</a>
             </li>
             <li>
-              <a href="#testimonials" className="block py-2 text-gray-700 hover:text-blue-600 focus:text-blue-600">
-                Testimonials
-              </a>
+              <a href="#testimonials" className="block py-2 hover:text-blue-500 transition-colors">Testimonials</a>
             </li>
             <li>
-              <a href="#contact" className="block py-2 text-gray-700 hover:text-blue-600 focus:text-blue-600">
-                Contact
-              </a>
+              <a href="#contact" className="block py-2 hover:text-blue-500 transition-colors">Contact</a>
             </li>
           </ul>
         </div>
       </header>
 
       {/* Main Content */}
-      <main className="flex-1 pt-20">
+      <main className="flex-1 flex flex-col">
         {/* Hero Section */}
         <section
           id="home"
-          className="relative flex flex-col items-center justify-center px-4 py-20 sm:py-28 bg-gray-50"
+          className="relative flex flex-col justify-center items-center text-center min-h-[70vh] py-20 px-4"
         >
-          {/* Animated Bird Background, subtly pulsing */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.4, ease: [0.42, 0, 0.58, 1] }}
-            className="absolute inset-0 pointer-events-none z-0 flex justify-center items-center"
-            aria-hidden="true"
-          >
-            <motion.svg
-              className="w-64 h-64 sm:w-96 sm:h-96 opacity-10"
-              viewBox="0 0 256 256"
-              fill="none"
-              initial={{ scale: 0.93 }}
-              animate={{ scale: [0.93, 1.02, 0.93] }}
-              transition={{
-                duration: 6,
-                repeat: Infinity,
-                ease: 'linear',
-              }}
-            >
-              <ellipse cx="128" cy="128" rx="120" ry="85" fill="#93c5fd" />
-            </motion.svg>
-          </motion.div>
-          <motion.div
+          <motion.h1
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: [0.42, 0, 0.58, 1] }}
-            className="relative z-10 max-w-2xl mx-auto text-center"
+            transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
+            className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6 bg-gradient-to-r from-blue-500 via-fuchsia-400 to-blue-400 bg-clip-text text-transparent"
           >
-            <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-6">
-              Discover Every Bird Species in the UK
-            </h1>
-            <p className="text-lg sm:text-xl text-gray-700 mb-8">
-              Explore a comprehensive, beautifully curated gallery of UK birds. Browse hundreds of species with stunning images and in-depth information. Search, learn, and get closer to nature—right from your screen.
-            </p>
-            {/* CTA Button */}
-            <motion.a
-              href="#features"
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.97 }}
-              transition={{ type: "spring", stiffness: 340, damping: 18 }}
-              className="inline-block px-8 py-3 rounded-full bg-blue-600 text-white font-semibold shadow-md hover:bg-blue-700 focus:bg-blue-700 transition"
-            >
-              Explore the Birds
-            </motion.a>
-          </motion.div>
-          {/* Search Bar */}
-          <motion.form
+            Minimal Social. <br className="hidden md:inline" />
+            Maximal Connection.
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 36 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
+            className="max-w-xl mx-auto mb-10 text-lg md:text-xl text-gray-600 font-normal"
+          >
+            Meet <span className="font-semibold text-blue-500">SocialAI</span> — the minimal social platform where AI enhances your conversations, not your distractions.
+          </motion.p>
+          <motion.a
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.7, ease: [0.42, 0, 0.58, 1] }}
-            className="relative z-10 mt-10 w-full max-w-xl mx-auto"
-            autoComplete="off"
-            onSubmit={e => e.preventDefault()}
+            transition={{ duration: 1.1, delay: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
+            href="#cta"
+            className="inline-block px-8 py-3 rounded-full bg-blue-500 text-white font-semibold tracking-wide shadow-lg hover:bg-blue-600 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-300/80 active:scale-95"
           >
-            <label htmlFor="bird-search" className="sr-only">
-              Search for a UK bird species
-            </label>
-            <div className="flex items-center bg-white border border-gray-300 rounded-full shadow-sm px-4 py-2 focus-within:ring-2 focus-within:ring-blue-400">
-              <svg
-                className="w-5 h-5 text-gray-400 mr-2"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth={2}
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-                <circle cx="11" cy="11" r="8" />
-                <path d="M21 21l-4.35-4.35" strokeLinecap="round" />
-              </svg>
-              <input
-                id="bird-search"
-                name="bird-search"
-                type="search"
-                placeholder="Search for a bird species..."
-                className="flex-1 bg-transparent border-none outline-none text-lg text-gray-900 placeholder-gray-400"
-                disabled
-              />
-            </div>
-            <span className="block mt-2 text-xs text-gray-400 text-left pl-2">
-              (Search coming soon!)
-            </span>
-          </motion.form>
+            Get Started
+          </motion.a>
         </section>
 
         {/* Features Section */}
         <section
           id="features"
-          className="py-20 sm:py-24 bg-white"
+          className="py-16 px-4 bg-white"
         >
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
-              className="text-3xl sm:text-4xl font-bold mb-10 text-center text-gray-900"
+          <motion.div
+            initial={{ opacity: 0, y: 32 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.5 }}
+            transition={{ duration: 0.8, ease: [0.42, 0, 0.58, 1] }}
+            className="max-w-4xl mx-auto text-center mb-12"
+          >
+            <h2 className="text-2xl md:text-4xl font-bold mb-3 tracking-tight text-gray-900">
+              Simple, Smart, Social.
+            </h2>
+            <p className="text-gray-600 md:text-lg">
+              Everything you need for meaningful social connection, nothing you don’t.
+            </p>
+          </motion.div>
+          <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Feature 1 */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.7, ease: [0.42, 0, 0.58, 1] }}
+              className="flex flex-col items-center p-6 bg-gray-50 rounded-2xl shadow-sm hover:shadow-md transition-shadow"
             >
-              Why Choose UK Birds Gallery?
-            </motion.h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-              {/* Feature 1 */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.55, ease: [0.25, 0.1, 0.25, 1] }}
-                className="bg-gray-50 rounded-xl shadow p-7 flex flex-col items-center"
-              >
-                <svg className="w-12 h-12 text-blue-500 mb-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 32 32">
-                  <path d="M6 19c4 1 8-2 10-6 5 5 10 2 10 2s-4 7-13 11c-2-1-7-4-7-8 0-2 2-2 2-2z" strokeLinecap="round" strokeLinejoin="round" />
-                  <circle cx="11.5" cy="13.5" r="1" fill="currentColor" />
+              <div className="mb-4">
+                <svg width="36" height="36" fill="none" viewBox="0 0 36 36" aria-hidden="true">
+                  <rect x="6" y="6" width="24" height="24" rx="6" fill="#38bdf8" opacity="0.18" />
+                  <path d="M13 18h10M18 13v10" stroke="#38bdf8" strokeWidth="2.2" strokeLinecap="round" />
                 </svg>
-                <h3 className="text-xl font-semibold mb-2 text-gray-900">Extensive Bird Gallery</h3>
-                <p className="text-gray-600 text-center">
-                  Browse high-quality images and profiles for every bird species found in the UK, from the resplendent Kingfisher to the elusive Nightjar.
-                </p>
-              </motion.div>
-              {/* Feature 2 */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.65, ease: [0.25, 0.1, 0.25, 1] }}
-                className="bg-gray-50 rounded-xl shadow p-7 flex flex-col items-center"
-              >
-                <svg className="w-12 h-12 text-yellow-500 mb-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 32 32">
-                  <circle cx="16" cy="16" r="12" />
-                  <path d="M16 8v8l5 3" strokeLinecap="round" />
-                </svg>
-                <h3 className="text-xl font-semibold mb-2 text-gray-900">Educational Insights</h3>
-                <p className="text-gray-600 text-center">
-                  Learn about bird habitats, calls, migration patterns, and fun facts to deepen your appreciation and knowledge of UK avifauna.
-                </p>
-              </motion.div>
-              {/* Feature 3 */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
-                className="bg-gray-50 rounded-xl shadow p-7 flex flex-col items-center"
-              >
-                <svg className="w-12 h-12 text-green-500 mb-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 32 32">
-                  <rect x="5" y="10" width="22" height="12" rx="6" />
-                  <circle cx="16" cy="16" r="4" />
-                </svg>
-                <h3 className="text-xl font-semibold mb-2 text-gray-900">Modern, Easy Search</h3>
-                <p className="text-gray-600 text-center">
-                  Quickly find any UK bird by name or type. Our intelligent search (coming soon) makes discovering new species effortless.
-                </p>
-              </motion.div>
-            </div>
-          </div>
-        </section>
-
-        {/* Bird Gallery Section */}
-        <section
-          id="gallery"
-          className="py-20 sm:py-24 bg-gray-50"
-        >
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
-              className="text-3xl sm:text-4xl font-bold mb-10 text-center text-gray-900"
+              </div>
+              <h3 className="font-semibold text-lg mb-2 text-gray-900">AI-Powered Feeds</h3>
+              <p className="text-gray-500 text-base">
+                See what matters most. Your feed is curated by AI to prioritize authentic, relevant connections.
+              </p>
+            </motion.div>
+            {/* Feature 2 */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.7, delay: 0.2, ease: [0.42, 0, 0.58, 1] }}
+              className="flex flex-col items-center p-6 bg-gray-50 rounded-2xl shadow-sm hover:shadow-md transition-shadow"
             >
-              Iconic UK Birds Gallery
-            </motion.h2>
-            {/* Responsive grid of bird images (placeholder images with names) */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
-              {[
-                { name: "European Robin", img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" },
-                { name: "Blue Tit", img: "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80" },
-                { name: "Blackbird", img: "https://images.unsplash.com/photo-1528825871115-3581a5387919?auto=format&fit=crop&w=400&q=80" },
-                { name: "Eurasian Wren", img: "https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=400&q=80" },
-                { name: "Barn Owl", img: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80" },
-                { name: "Mute Swan", img: "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=400&q=80" },
-                { name: "Kingfisher", img: "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?auto=format&fit=crop&w=400&q=80" },
-                { name: "Goldfinch", img: "https://images.unsplash.com/photo-1454023492550-5696f8ff10e1?auto=format&fit=crop&w=400&q=80" },
-                { name: "Great Spotted Woodpecker", img: "https://images.unsplash.com/photo-1444065381814-865dc9da92c0?auto=format&fit=crop&w=400&q=80" },
-                { name: "Song Thrush", img: "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80" },
-                { name: "Common Starling", img: "https://images.unsplash.com/photo-1465101178521-c1a9136a3f07?auto=format&fit=crop&w=400&q=80" },
-                { name: "Puffin", img: "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?auto=format&fit=crop&w=400&q=80" },
-              ].map((bird, idx) => (
-                <motion.div
-                  key={bird.name}
-                  initial={{ opacity: 0, scale: 0.94 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{
-                    duration: 0.6 + idx * 0.04,
-                    ease: [0.25, 0.1, 0.25, 1],
-                  }}
-                  className="flex flex-col items-center"
-                >
-                  <div className="relative group w-full aspect-[1/1] rounded-xl overflow-hidden shadow border border-gray-200 bg-white">
-                    <img
-                      src={bird.img}
-                      alt={bird.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                      loading="lazy"
-                    />
-                  </div>
-                  <span className="mt-2 text-sm font-medium text-gray-700 text-center">
-                    {bird.name}
-                  </span>
-                </motion.div>
-              ))}
-            </div>
-            <div className="mt-8 text-center text-sm text-gray-400">
-              Dozens more species coming soon!
-            </div>
+              <div className="mb-4">
+                <svg width="36" height="36" fill="none" viewBox="0 0 36 36" aria-hidden="true">
+                  <circle cx="18" cy="18" r="12" fill="#818cf8" opacity="0.18" />
+                  <path d="M13 18a5 5 0 1 1 10 0 5 5 0 0 1-10 0z" stroke="#818cf8" strokeWidth="2.2" strokeLinecap="round" />
+                </svg>
+              </div>
+              <h3 className="font-semibold text-lg mb-2 text-gray-900">Minimal Interface</h3>
+              <p className="text-gray-500 text-base">
+                Decluttered design. Focus on genuine interactions, not endless scrolling or ads.
+              </p>
+            </motion.div>
+            {/* Feature 3 */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.7, delay: 0.4, ease: [0.42, 0, 0.58, 1] }}
+              className="flex flex-col items-center p-6 bg-gray-50 rounded-2xl shadow-sm hover:shadow-md transition-shadow"
+            >
+              <div className="mb-4">
+                <svg width="36" height="36" fill="none" viewBox="0 0 36 36" aria-hidden="true">
+                  <rect x="9" y="9" width="18" height="18" rx="4" fill="#f472b6" opacity="0.18" />
+                  <path d="M13 23l10-10M23 23l-10-10" stroke="#f472b6" strokeWidth="2.2" strokeLinecap="round" />
+                </svg>
+              </div>
+              <h3 className="font-semibold text-lg mb-2 text-gray-900">Privacy by Design</h3>
+              <p className="text-gray-500 text-base">
+                Your data belongs to you. Built-in privacy controls and zero invasive tracking.
+              </p>
+            </motion.div>
           </div>
         </section>
 
         {/* About Section */}
         <section
           id="about"
-          className="py-20 sm:py-24 bg-white"
+          className="py-16 px-4 bg-gray-50"
         >
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
-              className="text-3xl sm:text-4xl font-bold mb-8 text-center text-gray-900"
-            >
-              Our Mission
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
-              className="text-lg text-gray-700 text-center max-w-3xl mx-auto"
-            >
-              UK Birds is a passion project by bird enthusiasts, for bird enthusiasts. Our aim is to inspire a love of nature and connect people with the remarkable diversity of avian life in Britain. Whether you&rsquo;re a seasoned birder, a student, or simply curious, we provide an accessible resource for learning, discovery, and appreciation of every feathered friend found on these isles.
-            </motion.p>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.8, ease: [0.42, 0, 0.58, 1] }}
+            className="max-w-3xl mx-auto text-center"
+          >
+            <h2 className="text-2xl md:text-4xl font-bold mb-3 text-gray-900">Our Mission</h2>
+            <p className="text-gray-600 md:text-lg mb-2">
+              SocialAI is built for people who value connection over noise—minimalism meets intelligent technology.
+            </p>
+            <p className="text-gray-500 md:text-base">
+              We believe great conversations shouldn’t be lost in distractions. Our AI enhances your experience quietly in the background, so you stay focused on what truly matters: your friends, your stories, your community.
+            </p>
+          </motion.div>
         </section>
 
         {/* Testimonials Section */}
         <section
           id="testimonials"
-          className="py-20 sm:py-24 bg-gray-50"
+          className="py-16 px-4 bg-white"
         >
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
+          <motion.div
+            initial={{ opacity: 0, y: 28 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.8, ease: [0.42, 0, 0.58, 1] }}
+            className="max-w-2xl mx-auto text-center mb-12"
+          >
+            <h2 className="text-2xl md:text-4xl font-bold mb-3 text-gray-900">Loved by Minimalists</h2>
+            <p className="text-gray-600 md:text-lg">
+              Here’s what our users say about SocialAI:
+            </p>
+          </motion.div>
+          <div className="max-w-5xl mx-auto grid gap-8 grid-cols-1 md:grid-cols-3">
+            {/* Testimonial 1 */}
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
-              className="text-3xl sm:text-4xl font-bold mb-10 text-center text-gray-900"
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.7, ease: [0.42, 0, 0.58, 1] }}
+              className="bg-gray-50 p-6 rounded-2xl shadow-sm flex flex-col items-center"
             >
-              What Our Users Say
-            </motion.h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-              {/* Testimonial 1 */}
-              <motion.div
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.48, ease: [0.25, 0.1, 0.25, 1] }}
-                className="bg-white rounded-xl shadow p-7 flex flex-col items-center"
-              >
-                <img
-                  src="https://randomuser.me/api/portraits/women/44.jpg"
-                  alt="User Alice"
-                  className="w-16 h-16 rounded-full object-cover mb-4 border border-gray-200"
-                  loading="lazy"
-                />
-                <p className="italic text-gray-700 mb-3 text-center">
-                  &ldquo;Absolutely stunning bird photos! I learned more in a week than I did in years of casual birdwatching.&rdquo;
-                </p>
-                <div className="font-bold text-blue-600">Alice Bennett</div>
-                <div className="text-xs text-gray-400">Wildlife Photographer</div>
-              </motion.div>
-              {/* Testimonial 2 */}
-              <motion.div
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.58, ease: [0.25, 0.1, 0.25, 1] }}
-                className="bg-white rounded-xl shadow p-7 flex flex-col items-center"
-              >
-                <img
-                  src="https://randomuser.me/api/portraits/men/51.jpg"
-                  alt="User Tom"
-                  className="w-16 h-16 rounded-full object-cover mb-4 border border-gray-200"
-                  loading="lazy"
-                />
-                <p className="italic text-gray-700 mb-3 text-center">
-                  &ldquo;The best resource for UK birds on the web. My kids love looking up birds we spot in our garden.&rdquo;
-                </p>
-                <div className="font-bold text-blue-600">Tom Hughes</div>
-                <div className="text-xs text-gray-400">Parent & Birdwatcher</div>
-              </motion.div>
-              {/* Testimonial 3 */}
-              <motion.div
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.66, ease: [0.25, 0.1, 0.25, 1] }}
-                className="bg-white rounded-xl shadow p-7 flex flex-col items-center"
-              >
+              <div className="mb-4">
                 <img
                   src="https://randomuser.me/api/portraits/men/32.jpg"
-                  alt="User Dr. Singh"
-                  className="w-16 h-16 rounded-full object-cover mb-4 border border-gray-200"
-                  loading="lazy"
+                  alt="User 1"
+                  className="w-12 h-12 rounded-full object-cover"
                 />
-                <p className="italic text-gray-700 mb-3 text-center">
-                  &ldquo;Incredibly detailed and well-presented. A fantastic site for amateur and expert ornithologists alike.&rdquo;
-                </p>
-                <div className="font-bold text-blue-600">Dr. Ravi Singh</div>
-                <div className="text-xs text-gray-400">Ecologist</div>
-              </motion.div>
-            </div>
+              </div>
+              <p className="text-gray-800 text-base mb-3">&quot;Finally, a social platform that doesn’t feel overwhelming. The interface is so clean and the AI suggestions are spot on!&quot;</p>
+              <span className="text-sm text-gray-500 font-medium">Alex T.</span>
+            </motion.div>
+            {/* Testimonial 2 */}
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.7, delay: 0.12, ease: [0.42, 0, 0.58, 1] }}
+              className="bg-gray-50 p-6 rounded-2xl shadow-sm flex flex-col items-center"
+            >
+              <div className="mb-4">
+                <img
+                  src="https://randomuser.me/api/portraits/women/44.jpg"
+                  alt="User 2"
+                  className="w-12 h-12 rounded-full object-cover"
+                />
+              </div>
+              <p className="text-gray-800 text-base mb-3">&quot;I love how SocialAI puts privacy at the forefront. My feed feels personal, not algorithmically manipulative.&quot;</p>
+              <span className="text-sm text-gray-500 font-medium">Morgan S.</span>
+            </motion.div>
+            {/* Testimonial 3 */}
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.7, delay: 0.24, ease: [0.42, 0, 0.58, 1] }}
+              className="bg-gray-50 p-6 rounded-2xl shadow-sm flex flex-col items-center"
+            >
+              <div className="mb-4">
+                <img
+                  src="https://randomuser.me/api/portraits/men/65.jpg"
+                  alt="User 3"
+                  className="w-12 h-12 rounded-full object-cover"
+                />
+              </div>
+              <p className="text-gray-800 text-base mb-3">&quot;Minimal, beautiful, and smart. SocialAI helps me connect with friends without all the noise.&quot;</p>
+              <span className="text-sm text-gray-500 font-medium">Jamie L.</span>
+            </motion.div>
           </div>
         </section>
 
-        {/* CTA Section */}
+        {/* Call to Action Section */}
         <section
           id="cta"
-          className="py-20 sm:py-24 bg-white"
+          className="py-16 px-4 bg-gradient-to-r from-blue-50 via-fuchsia-50 to-white"
         >
-          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <motion.h2
-              initial={{ opacity: 0, scale: 0.94 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, ease: [0.42, 0, 0.58, 1] }}
-              className="text-3xl sm:text-4xl font-bold mb-6 text-gray-900"
-            >
-              Ready to Explore UK Birdlife?
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
-              className="text-lg text-gray-700 mb-8"
-            >
-              Start your journey today. Delve into the beauty and diversity of Britain&rsquo;s birds and become part of a growing community of nature lovers.
-            </motion.p>
-            <motion.a
+          <motion.div
+            initial={{ opacity: 0, y: 36 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.5 }}
+            transition={{ duration: 0.8, ease: [0.42, 0, 0.58, 1] }}
+            className="max-w-2xl mx-auto text-center"
+          >
+            <h2 className="text-2xl md:text-4xl font-bold mb-3 text-gray-900">
+              Join the Next-Gen Social Community
+            </h2>
+            <p className="text-gray-600 md:text-lg mb-7">
+              Sign up in seconds. Experience the future of social, today.
+            </p>
+            <a
               href="#contact"
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.97 }}
-              transition={{ type: "spring", stiffness: 340, damping: 18 }}
-              className="inline-block px-8 py-3 rounded-full bg-blue-600 text-white font-semibold shadow-md hover:bg-blue-700 focus:bg-blue-700 transition"
+              className="inline-block px-8 py-3 rounded-full bg-blue-500 text-white font-semibold tracking-wide shadow-lg hover:bg-blue-600 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-300/80 active:scale-95"
             >
-              Get In Touch
-            </motion.a>
-          </div>
+              Request Early Access
+            </a>
+          </motion.div>
         </section>
 
         {/* Contact Section */}
         <section
           id="contact"
-          className="py-20 sm:py-24 bg-gray-50"
+          className="py-16 px-4 bg-white"
         >
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
-              className="text-3xl sm:text-4xl font-bold mb-8 text-center text-gray-900"
-            >
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.8, ease: [0.42, 0, 0.58, 1] }}
+            className="max-w-2xl mx-auto text-center mb-10"
+          >
+            <h2 className="text-2xl md:text-4xl font-bold mb-3 text-gray-900">
               Contact Us
-            </motion.h2>
-            <motion.form
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
-              className="bg-white rounded-xl shadow p-8 max-w-lg mx-auto"
-              autoComplete="off"
-              onSubmit={e => e.preventDefault()}
+            </h2>
+            <p className="text-gray-600 md:text-lg">
+              Questions? Feedback? We’re here to help you make the most of SocialAI.
+            </p>
+          </motion.div>
+          {/* Minimal Contact Form */}
+          <form className="max-w-lg mx-auto bg-gray-50 rounded-2xl shadow-sm p-8 flex flex-col gap-4">
+            <div className="flex flex-col gap-2">
+              <label htmlFor="name" className="text-sm font-medium text-gray-700 text-left">Name</label>
+              <input
+                id="name"
+                name="name"
+                type="text"
+                autoComplete="name"
+                className="px-4 py-2 rounded-lg border border-gray-200 bg-white focus:outline-none focus:ring-2 focus:ring-blue-200 transition"
+                placeholder="Your Name"
+                required
+              />
+            </div>
+            <div className="flex flex-col gap-2">
+              <label htmlFor="email" className="text-sm font-medium text-gray-700 text-left">Email</label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                autoComplete="email"
+                className="px-4 py-2 rounded-lg border border-gray-200 bg-white focus:outline-none focus:ring-2 focus:ring-blue-200 transition"
+                placeholder="you@email.com"
+                required
+              />
+            </div>
+            <div className="flex flex-col gap-2">
+              <label htmlFor="message" className="text-sm font-medium text-gray-700 text-left">Message</label>
+              <textarea
+                id="message"
+                name="message"
+                rows={4}
+                className="px-4 py-2 rounded-lg border border-gray-200 bg-white focus:outline-none focus:ring-2 focus:ring-blue-200 transition"
+                placeholder="How can we help?"
+                required
+              />
+            </div>
+            <button
+              type="submit"
+              className="mt-2 px-6 py-3 rounded-full bg-blue-500 text-white font-semibold shadow hover:bg-blue-600 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-300/80 active:scale-95"
             >
-              <div className="mb-4">
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
-                  Name
-                </label>
-                <input
-                  id="name"
-                  name="name"
-                  type="text"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-400 focus:border-blue-400 text-gray-900"
-                  placeholder="Your Name"
-                  disabled
-                />
-              </div>
-              <div className="mb-4">
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                  Email
-                </label>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-400 focus:border-blue-400 text-gray-900"
-                  placeholder="your@email.com"
-                  disabled
-                />
-              </div>
-              <div className="mb-6">
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows={4}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-400 focus:border-blue-400 text-gray-900"
-                  placeholder="Type your message here..."
-                  disabled
-                />
-              </div>
-              <button
-                type="submit"
-                className="w-full px-6 py-3 rounded-full bg-blue-600 text-white font-semibold shadow-md hover:bg-blue-700 focus:bg-blue-700 transition cursor-not-allowed"
-                disabled
-              >
-                Coming Soon
-              </button>
-              <div className="mt-2 text-center text-xs text-gray-400">
-                Please email us at <a href="mailto:info@ukbirds.example.com" className="underline text-blue-600 hover:text-blue-800">info@ukbirds.example.com</a>
-              </div>
-            </motion.form>
+              Send Message
+            </button>
+          </form>
+          {/* Alt Contact */}
+          <div className="mt-8 text-center text-gray-500 text-sm">
+            Or email us at{' '}
+            <a href="mailto:hello@socialai.com" className="text-blue-500 underline hover:text-blue-600 transition-colors">
+              hello@socialai.com
+            </a>
           </div>
         </section>
       </main>
 
       {/* Footer */}
-      <footer className="bg-white border-t border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col md:flex-row items-center md:justify-between space-y-6 md:space-y-0">
-          <div className="flex items-center space-x-3">
-            {/* Logo */}
-            <span className="flex items-center text-lg font-bold tracking-tight text-blue-600">
-              <svg
-                className="w-7 h-7 mr-1 text-blue-500"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth={2}
-                viewBox="0 0 32 32"
-                aria-hidden="true"
-              >
-                <path
-                  d="M6 19c4 1 8-2 10-6 5 5 10 2 10 2s-4 7-13 11c-2-1-7-4-7-8 0-2 2-2 2-2z"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <circle cx="11.5" cy="13.5" r="1" fill="currentColor" />
-              </svg>
-              UK Birds
-            </span>
-            <span className="text-gray-400 text-sm">&copy; {new Date().getFullYear()} All Rights Reserved</span>
+      <footer className="bg-white border-t border-gray-100 py-8 px-4">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center md:justify-between gap-4">
+          {/* Logo & Copyright */}
+          <div className="flex items-center gap-2">
+            <svg width={28} height={28} viewBox="0 0 32 32" fill="none" aria-hidden="true">
+              <circle cx={16} cy={16} r={14} className="stroke-blue-400" strokeWidth={2} fill="url(#footerLogoGrad)" />
+              <defs>
+                <radialGradient id="footerLogoGrad" cx="50%" cy="50%" r="60%">
+                  <stop offset="0%" stopColor="#38bdf8" />
+                  <stop offset="100%" stopColor="#f0abfc" />
+                </radialGradient>
+              </defs>
+            </svg>
+            <span className="font-extrabold text-lg tracking-tight text-gray-900 select-none">SocialAI</span>
+            <span className="ml-4 text-gray-400 text-sm">&copy; {new Date().getFullYear()} SocialAI. All rights reserved.</span>
           </div>
-          <div className="flex space-x-6">
-            <a href="#features" className="text-gray-600 hover:text-blue-600 transition text-sm">
-              Features
-            </a>
-            <a href="#gallery" className="text-gray-600 hover:text-blue-600 transition text-sm">
-              Gallery
-            </a>
-            <a href="#about" className="text-gray-600 hover:text-blue-600 transition text-sm">
-              About
-            </a>
-            <a href="#contact" className="text-gray-600 hover:text-blue-600 transition text-sm">
-              Contact
-            </a>
-          </div>
-          <div className="flex space-x-5">
-            {/* Socials: placeholder SVGs */}
-            <a
-              href="https://twitter.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-400 hover:text-blue-500 transition"
-              aria-label="Twitter"
-            >
-              <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M21.5 7.2c.02.27.02.55.02.82 0 8.38-6.38 18.05-18.05 18.05-3.59 0-6.94-1.03-9.76-2.81.5.06 1.01.09 1.54.09 2.98 0 5.72-1.02 7.9-2.74a6.36 6.36 0 0 1-5.94-4.42c.38.07.77.12 1.18.12.56 0 1.12-.07 1.64-.21a6.34 6.34 0 0 1-5.09-6.22v-.08c.85.47 1.82.75 2.85.78A6.34 6.34 0 0 1 1.5 3.14c0-1.17.32-2.26.88-3.2a18 18 0 0 0 13.03 6.6c-.11-.47-.17-.96-.17-1.46A6.34 6.34 0 0 1 18.29 0a12.66 12.66 0 0 0 4.03-1.54 6.28 6.28 0 0 1-2.78 3.47A12.7 12.7 0 0 0 24 2.29a13.01 13.01 0 0 1-3.5 3.6z"/>
-              </svg>
-            </a>
-            <a
-              href="https://facebook.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-400 hover:text-blue-700 transition"
-              aria-label="Facebook"
-            >
-              <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.99 3.66 9.12 8.44 9.88v-6.99h-2.54v-2.89h2.54V9.41c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.23.2 2.23.2v2.46h-1.26c-1.24 0-1.62.77-1.62 1.56v1.87h2.77l-.44 2.89h-2.33v6.99C18.34 21.12 22 16.99 22 12"/>
-              </svg>
-            </a>
-            <a
-              href="https://instagram.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-400 hover:text-pink-500 transition"
-              aria-label="Instagram"
-            >
-              <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                <circle cx="12" cy="12" r="3.2" />
-                <path d="M16.8 2H7.2C4.3 2 2 4.3 2 7.2v9.6C2 19.7 4.3 22 7.2 22h9.6c2.9 0 5.2-2.3 5.2-5.2V7.2C22 4.3 19.7 2 16.8 2zm3.2 14.8c0 1.8-1.4 3.2-3.2 3.2H7.2c-1.8 0-3.2-1.4-3.2-3.2V7.2c0-1.8 1.4-3.2 3.2-3.2h9.6c1.8 0 3.2 1.4 3.2 3.2v9.6z"/>
-                <circle cx="17.5" cy="6.5" r="1.2" />
-              </svg>
-            </a>
+          {/* Quick Links */}
+          <div className="flex items-center gap-6 mt-4 md:mt-0">
+            <a href="#features" className="text-gray-500 hover:text-blue-500 text-sm transition-colors">Features</a>
+            <a href="#about" className="text-gray-500 hover:text-blue-500 text-sm transition-colors">About</a>
+            <a href="#contact" className="text-gray-500 hover:text-blue-500 text-sm transition-colors">Contact</a>
+            {/* Social Icons */}
+            <div className="flex items-center gap-3 ml-3">
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-colors" aria-label="Twitter">
+                <svg width={20} height={20} fill="none" viewBox="0 0 20 20">
+                  <path d="M18 5.3a7.1 7.1 0 0 1-2 .6 3.5 3.5 0 0 0 1.5-2 7.1 7.1 0 0 1-2.2.8A3.5 3.5 0 0 0 10 9.5v.8A10 10 0 0 1 3 4s-4 9 5 13a10.7 10.7 0 0 1-6 2c9 5 20 0 20-11.5a7 7 0 0 0-.1-1.2A5 5 0 0 0 20 4.6a7 7 0 0 1-2 .6z" fill="#60a5fa" opacity="0.7"/>
+                </svg>
+              </a>
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-600 transition-colors" aria-label="Facebook">
+                <svg width={20} height={20} fill="none" viewBox="0 0 20 20">
+                  <path d="M17 2H3a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h7v-6h-2v-2h2V8.5A2.5 2.5 0 0 1 12.5 6h2.5v2h-2.5a.5.5 0 0 0-.5.5V9h3l-.5 2h-2.5v6h3a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1z" fill="#818cf8" opacity="0.7"/>
+                </svg>
+              </a>
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-pink-400 transition-colors" aria-label="Instagram">
+                <svg width={20} height={20} fill="none" viewBox="0 0 20 20">
+                  <rect x="3" y="3" width="14" height="14" rx="4" fill="#f472b6" opacity="0.12"/>
+                  <path d="M10 7a3 3 0 1 0 0 6 3 3 0 0 0 0-6zM14.5 5.5h.01" stroke="#f472b6" strokeWidth="1.2" strokeLinecap="round"/>
+                  <circle cx="10" cy="10" r="3.6" stroke="#f472b6" strokeWidth="1.2"/>
+                </svg>
+              </a>
+            </div>
           </div>
         </div>
       </footer>
     </div>
   );
 };
-
 export default LandingPage;
